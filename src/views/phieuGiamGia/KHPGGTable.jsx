@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Pagination, Popconfirm, Space, Table, Tag } from 'antd'
+import { Button, Pagination, Popconfirm, Space, Table, Tag, Row, Col } from 'antd'
 import { useParams } from 'react-router-dom'
 import { deleteKhPGG, getKHPGGById } from '../../service/phieuGiamGiaService'
 import { DeleteOutlined } from '@ant-design/icons'
@@ -137,27 +137,37 @@ function KHPGGTable() {
   ]
 
   return (
-    <>
-      <Table
-        dataSource={customerCoupons}
-        columns={columns}
-        loading={loading}
-        rowKey="id"
-        pagination={false}
-      />
-
-      <Pagination
+    <Row>
+      <Col span={24}>
+        <h4>Tất cả khách hàng có phiếu giảm giá :{} </h4>
+      </Col>
+      <Col
+        span={24}
         style={{
           marginTop: '10px',
         }}
-        current={currentPage}
-        pageSize={size}
-        total={totalItems}
-        onChange={handlePageChange}
-        showSizeChanger
-        pageSizeOptions={['5', '10', '20']}
-      />
-    </>
+      >
+        <Table
+          dataSource={customerCoupons}
+          columns={columns}
+          loading={loading}
+          rowKey="id"
+          pagination={false}
+        />
+
+        <Pagination
+          style={{
+            marginTop: '10px',
+          }}
+          current={currentPage}
+          pageSize={size}
+          total={totalItems}
+          onChange={handlePageChange}
+          showSizeChanger
+          pageSizeOptions={['5', '10', '20']}
+        />
+      </Col>
+    </Row>
   )
 }
 
